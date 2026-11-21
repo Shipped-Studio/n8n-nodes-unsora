@@ -1,0 +1,27 @@
+{
+	"node": "n8n-nodes-unsora.unsoraTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing & Content"],
+	"alias": [
+		"clip",
+		"clipping",
+		"post published",
+		"post failed",
+		"social media",
+		"tiktok",
+		"youtube"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/Shipped-Studio/n8n-nodes-unsora?tab=readme-ov-file#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/Shipped-Studio/n8n-nodes-unsora?tab=readme-ov-file#unsora-trigger"
+			}
+		]
+	}
+}

@@ -1,0 +1,78 @@
+{
+	"name": "Clip a YouTube video and schedule the clips to TikTok",
+	"nodes": [
+		{
+			"parameters": {},
+			"name": "When clicking 'Execute workflow'",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [0, 0]
+		},
+		{
+			"parameters": {
+				"resource": "clipping",
+				"operation": "create",
+				"videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
+				"targetDuration": "30-60",
+				"ratio": "9:16",
+				"additionalFields": {
+					"maxClips": 5,
+					"enableCaption": true,
+					"captionStyle": "bold-white"
+				},
+				"waitForCompletion": true,
+				"pollInterval": 15,
+				"timeout": 30
+			},
+			"name": "Create Clipping",
+			"type": "n8n-nodes-unsora.unsora",
+			"typeVersion": 1,
+			"position": [220, 0]
+		},
+		{
+			"parameters": {
+				"fieldToSplitOut": "clips",
+				"options": {}
+			},
+			"name": "One Item per Clip",
+			"type": "n8n-nodes-base.splitOut",
+			"typeVersion": 1,
+			"position": [440, 0]
+		},
+		{
+			"parameters": {
+				"resource": "post",
+				"operation": "create",
+				"accounts": ["YOUR_TIKTOK_ACCOUNT_ID"],
+				"caption": "={{ $json.title || 'New clip' }} #fyp #shorts",
+				"mediaType": "video",
+				"videoUrl": "={{ $json.clipUrl }}",
+				"publishMode": "schedule",
+				"scheduledAt": "={{ $now.plus({ hours: $itemIndex + 1 }).toISO() }}",
+				"platformSettings": {
+					"tiktok": {
+						"privacyLevel": "PUBLIC_TO_EVERYONE",
+						"isAigc": true
+					}
+				},
+				"additionalFields": {}
+			},
+			"name": "Schedule to TikTok",
+			"type": "n8n-nodes-unsora.unsora",
+			"typeVersion": 1,
+			"position": [660, 0]
+		}
+	],
+	"connections": {
+		"When clicking 'Execute workflow'": {
+			"main": [[{ "node": "Create Clipping", "type": "main", "index": 0 }]]
+		},
+		"Create Clipping": {
+			"main": [[{ "node": "One Item per Clip", "type": "main", "index": 0 }]]
+		},
+		"One Item per Clip": {
+			"main": [[{ "node": "Schedule to TikTok", "type": "main", "index": 0 }]]
+		}
+	},
+	"settings": {}
+}

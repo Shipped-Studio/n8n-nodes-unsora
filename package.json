@@ -1,0 +1,66 @@
+{
+	"name": "n8n-nodes-unsora",
+	"version": "0.1.0",
+	"description": "n8n nodes for Unsora, the social media scheduler with AI: schedule and publish posts to every social network, with AI that turns long videos into clips and creates video, images, music and voiceovers.",
+	"license": "MIT",
+	"homepage": "https://github.com/Shipped-Studio/n8n-nodes-unsora#readme",
+	"bugs": {
+		"url": "https://github.com/Shipped-Studio/n8n-nodes-unsora/issues"
+	},
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"unsora",
+		"ai clipping",
+		"video clipping",
+		"social media scheduler",
+		"ai video",
+		"tiktok",
+		"youtube shorts",
+		"instagram reels"
+	],
+	"author": {
+		"name": "Shipped Studio",
+		"email": "support@tryunsora.com",
+		"url": "https://github.com/Shipped-Studio"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Shipped-Studio/n8n-nodes-unsora.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease",
+		"test": "vitest run"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/UnsoraApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Unsora/Unsora.node.js",
+			"dist/nodes/UnsoraTrigger/UnsoraTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.54.5",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3",
+		"vitest": "3.2.4"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
