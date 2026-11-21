@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-unsora",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "n8n nodes for Unsora, the social media scheduler with AI: schedule and publish posts to every social network, with AI that turns long videos into clips and creates video, images, music and voiceovers.",
 	"license": "MIT",
 	"homepage": "https://github.com/Shipped-Studio/n8n-nodes-unsora#readme",
